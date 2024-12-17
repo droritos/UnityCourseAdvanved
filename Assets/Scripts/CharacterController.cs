@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MouseHandller : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     [SerializeField] Camera myCamera;
     [SerializeField] NavMeshAgent myAgent;
@@ -15,6 +15,19 @@ public class MouseHandller : MonoBehaviour
     void Update()
     {
         MoveAgent();
+    }
+    public void SetCameraMain()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            myCamera.tag = "MainCamera";
+            myCamera.enabled = true;
+        }
+        else
+        {
+            myCamera.tag = "Untagged";
+            myCamera.enabled = false;
+        }
     }
 
     private void MoveAgent()
@@ -33,6 +46,8 @@ public class MouseHandller : MonoBehaviour
             }
         }
     }
+
+
     bool IsOnNavMeshLink(Vector3 position)
     {
         NavMeshHit hit;
