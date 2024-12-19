@@ -4,39 +4,35 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] CharacterController barbCharcter;
     [SerializeField] CharacterController magCharcter;
+    [SerializeField] Camera mainCamera;
 
     private void Start()
     {
         SetBarbCharacter();
+        SetMagCharacter();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SetBarbCharacter();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
             SetMagCharacter();
         }
-
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetBarbCharacter();
+        }
     }
 
     private void SetBarbCharacter()
     {
-        barbCharcter.SetCameraMain();
-        magCharcter.gameObject.SetActive(false);
-
-        barbCharcter.gameObject.SetActive(true);
+        magCharcter.Deactivate();
+        barbCharcter.SetCamera(mainCamera); 
     }
 
     private void SetMagCharacter()
     {
-        magCharcter.SetCameraMain();
-        barbCharcter.gameObject.SetActive(false);
-
-        magCharcter.gameObject.SetActive(true);
+        barbCharcter.Deactivate();
+        magCharcter.SetCamera(mainCamera); 
     }
-
 }
