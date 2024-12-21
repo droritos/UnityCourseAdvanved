@@ -3,17 +3,13 @@ using UnityEngine.AI;
 
 public class CharacterController : MonoBehaviour
 {
+    public NavMeshAgent MyAgent;
+
     [SerializeField] Transform cameraTransform;
-    [SerializeField] NavMeshAgent myAgent;
     [SerializeField] Animator animator;
 
     private Camera _myCamera;
     private bool _isActive;
-    private float _currentSpeed;
-    private void Start()
-    {
-        _currentSpeed = myAgent.speed;
-    }
 
     void Update()
     {
@@ -67,10 +63,10 @@ public class CharacterController : MonoBehaviour
             // Moving to that ray position
             if (Physics.Raycast(myRay, out myHit))
             {
-                myAgent.SetDestination(myHit.point);
+                MyAgent.SetDestination(myHit.point);
             }
         }
-        animator.SetBool("IsPath", myAgent.hasPath); // Handle Animation
+        animator.SetBool("IsPath", MyAgent.hasPath); // Handle Animation
     }
 
 }

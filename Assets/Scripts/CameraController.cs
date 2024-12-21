@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        //SetAgentsArea();
         SetBarbCharacter();
         SetMagCharacter();
     }
@@ -35,4 +36,13 @@ public class CameraController : MonoBehaviour
         barbCharcter.Deactivate();
         magCharcter.SetCamera(mainCamera); 
     }
+
+    private void SetAgentsArea()
+    {
+        barbCharcter.MyAgent.SetAreaCost(6, 1);
+        magCharcter.MyAgent.SetAreaCost(6, 99);
+        print($"Barb {barbCharcter.MyAgent.GetAreaCost(6)}");
+        print($"Mage {magCharcter.MyAgent.GetAreaCost(6)}");
+    }
+
 }
